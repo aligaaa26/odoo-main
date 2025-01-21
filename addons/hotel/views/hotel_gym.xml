@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <!-- Pindahkan definisi view sebelum action -->
+        <record id="hotel_gym_view_form" model="ir.ui.view">
+            <field name="name">hotel Gym</field>
+            <field name="model">hotel.gym</field>
+            <field name="arch" type="xml">
+                <form string="Hotel Gym Form" options="{'create': False}">
+                    <sheet>
+                        <div class="o_row">
+                            <div class="o_col_12 text-center">
+                                <div style="display: flex; justify-content: center; align-items: center;">
+                                    <field name="gambar_gym" widget="image" string="Gambar Gym" style="max-width: 100%; height: auto; object-fit: contain;"/>
+                                </div>
+                            </div>
+                        </div>
+                        <group string="Data Gym Hotel" class="o_group">
+                            <group>
+                                <field name="nama_gym" string="Nama Gym" readonly="true"/>                                                                                                
+                            </group>
+                            <group>
+                                <field name="biaya_gym" string="Biaya Gym"/> 
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Deskripsi">
+                                <field name="deskripsi_gym" placeholder="Deskripsi Gym.."/> 
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Definisi action setelah view -->
+        <record id="hotel_gym_action" model="ir.actions.act_window">
+            <field name="name">Gym</field>
+            <field name="res_model">hotel.gym</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="hotel_gym_view_form"/> <!-- Tambahkan view_id -->
+            <!-- <field name="context">{'form_view_initial_mode': 'edit', 'create': False}</field> -->
+            <!-- <field name="res_id">1</field> -->
+        </record>    
+    </data>
+</odoo>

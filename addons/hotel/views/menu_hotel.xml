@@ -1,0 +1,61 @@
+<odoo>
+    <!-- Menu Root untuk Hotel -->
+    <menuitem 
+        id="hotel_menu_root" 
+        name="Hotel" 
+        sequence="0"/>
+    
+    <!-- Menu Master Data -->
+    <menuitem 
+        id="hotel_master_data_menu" 
+        name="Master Data" 
+        parent="hotel_menu_root" 
+        sequence="3">
+        
+        <!-- Aksi untuk Pegawai Hotel -->
+        <menuitem 
+            id="hotel_pegawai_menu_action" 
+            action="hotel_pegawai_action" 
+            name="Pegawai Hotel"
+            sequence="1"/>
+    </menuitem>
+     
+    <!-- Menu Reservasi -->
+    <menuitem 
+        id="reservasi_data_menu" 
+        action="hotel_reservasi_menu_action" 
+        name="Reservasi" 
+        parent="hotel_menu_root" 
+        sequence="1"/>
+
+    <!-- Menu Fasilitas -->
+    <menuitem 
+        id="fasilitas_data_menu" 
+        name="Fasilitas" 
+        parent="hotel_menu_root" 
+        sequence="2"/>
+        
+        <!-- Submenu Laundry -->
+        <menuitem id="laundry_data_menu" name="Laundry"
+            parent="fasilitas_data_menu" sequence="1"/>
+        
+        <!-- Aksi untuk menu Laundry -->
+        <menuitem id="hotel_laundry_menu_action"
+            action="hotel_laundry_action" parent="laundry_data_menu"
+            sequence="1"/>
+
+        <!-- Aksi untuk Layanan Laundry -->
+        <menuitem id="layanan_laundry_menu_action"
+            action="hotel_layanan_laundry_action"
+            name="Layanan Laundry" parent="laundry_data_menu"
+            sequence="2"/>
+
+        <!-- Submenu Gym -->
+        <menuitem id="gym_data_menu" name="Pusat Kebugaraan"
+            parent="fasilitas_data_menu" sequence="2"/>
+        
+        <!-- Aksi untuk menu gym -->
+        <menuitem id="hotel_gym_menu_action"
+            action="hotel_gym_action" parent="gym_data_menu"
+            sequence="1"/>
+</odoo>

@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+        <record id="hotel_layanan_laundry_view_list" model="ir.ui.view">
+			<field name="name">layanan Laundry Hotel</field>
+            <field name="model">hotel.layanan.laundry</field>
+            <field name="arch" type="xml">
+                <list string="layanan Hotel">
+                    <field name="nama_layanan" />
+                    <field name="biaya_layanan" />
+                </list>
+            </field>
+        </record>
+
+        <record id="hotel_layanan_laundry_action" model="ir.actions.act_window">
+            <field name="name">layanan Laundry Hotel</field>
+            <field name="res_model">hotel.layanan.laundry</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="view_id" ref="hotel_layanan_laundry_view_list"/> <!-- Tambahkan view_id -->
+        </record>    
+
+        <record id="hotel_layanan_laundry_view_form" model="ir.ui.view">
+            <field name="name">layanan Laundry Hotel form</field>
+            <field name="model">hotel.layanan.laundry</field>
+            <field name="arch" type="xml">
+                <form string="Laundry Hotel Form">
+                    <sheet>
+                        <group string="Data Layanan Laundry Hotel" class="o_group">
+                            <group>
+                                <field name="nama_layanan" string="Nama Layanan"/>                                                                                                
+                            </group>
+                            <group>
+                                <field name="biaya_layanan" string="Biaya Layanan"/> 
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Deskripsi">
+                                <field name="deskripsi_layanan" placeholder="Deskripsi Layanan.."/> 
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

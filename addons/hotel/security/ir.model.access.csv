@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hotel_reservasi,access_hotel_reservasi,model_hotel_reservasi,base.group_user,1,1,1,1
+access_hotel_pegawai,access_hotel_pegawai,model_hotel_pegawai,base.group_user,1,1,1,1
+access_hotel_laundry,access_hotel_laundry,model_hotel_laundry,base.group_user,1,1,1,1
+access_hotel_layanan_laundry,access_hotel_layanan_laundry,model_hotel_layanan_laundry,base.group_user,1,1,1,1
+access_hotel_gym,access_hotel_gym,model_hotel_gym,base.group_user,1,1,1,1

@@ -1,0 +1,4 @@
+pillow
+psycopg2-binary
+num2words
+requests

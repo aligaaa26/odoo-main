@@ -1,0 +1,50 @@
+<odoo>
+    <data>
+        <record id="hotel_pegawai_view_list" model="ir.ui.view">
+			<field name="name">Pegawai Hotel</field>
+            <field name="model">hotel.pegawai</field>
+            <field name="arch" type="xml">
+                <list string="Pegawai Hotel">
+                    <field name="nama_pegawai" />
+                    <field name="email" />
+                    <field name="jenis_pegawai" />
+                </list>
+            </field>
+        </record>
+
+        <record id="hotel_pegawai_action" model="ir.actions.act_window">
+            <field name="name">Pegawai Hotel</field>
+            <field name="res_model">hotel.pegawai</field>
+            <field name="view_mode">list,form,kanban</field>
+            <field name="view_id" ref="hotel_pegawai_view_list"/> <!-- Tambahkan view_id -->
+        </record>    
+
+        <record id="hotel_pegawai_view_form" model="ir.ui.view">
+            <field name="name">Pegawai Hotel form</field>
+            <field name="model">hotel.pegawai</field>
+            <field name="arch" type="xml">
+                <form string="Pegawai Hotel Form">
+                    <sheet>
+                        <group string="Data Pegawai Hotel" class="o_group">
+                            <group>
+                                <field name="nama_pegawai" string="Nama Pegawai"/>                                                    
+                                <field name="alamat" readonly="1" placeholder="Alamat"/>
+                                <field name="phone" readonly="1" placeholder="Phone"/>
+                                <field name="email" readonly="1" placeholder="Email"/>                                                
+                                <field name="gender" placeholder="Gender"/>                                                
+                            </group>
+                            <group>
+                                <field name="jenis_pegawai" string="Jenis Pegawai" placeholder="Jenis Pekerjaan"/> 
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="Note">
+                                <field name="note" placeholder="Ini Isinya Note Pegawai"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

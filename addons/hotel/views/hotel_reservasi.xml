@@ -1,0 +1,120 @@
+<odoo>
+    <data>
+        <!-- Search View for Hotel -->
+        <record id="hotel_view_search" model="ir.ui.view">
+            <field name="name">Hotel Search</field>
+            <field name="model">hotel.reservasi</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="nomor_reservasi"/>
+                    <field name="nama"/>
+                </search>
+            </field>
+        </record>
+
+        <!-- list View for Hotel -->
+        <record id="hotel_view_list" model="ir.ui.view">
+            <field name="name">Hotel List</field>
+            <field name="model">hotel.reservasi</field>
+            <field name="arch" type="xml">
+                <list string="Hotel List">
+                    <field name="nomor_reservasi"/>
+                    <field name="nama"/>
+                    <field name="email"/>
+                    <field name="tanggal_reservasi"/>
+                    <!-- Badge dengan warna kustom berdasarkan status -->
+                    <field name="state" widget="badge" 
+                        decoration-success="state == 'check_in'"
+                        decoration-danger="state == 'canceled'"
+                        decoration-info="state == 'reservasi'"
+                        decoration-warning="state == 'check_out'"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Kanban View for Hotel -->
+        <record id="hotel_view_kanban" model="ir.ui.view">
+            <field name="name">Hotel Kanban</field>
+            <field name="model">hotel.reservasi</field>
+            <field name="arch" type="xml">
+                <kanban string="Hotel Kanban">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card">
+                                <strong><field name="nomor_reservasi"/></strong>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Form View for Hotel -->
+        <record id="hotel_view_form" model="ir.ui.view">
+            <field name="name">Reservasi Form</field>
+            <field name="model">hotel.reservasi</field>
+            <field name="arch" type="xml">
+                <form string="Hotel Form">
+                    <sheet>
+                        <header>
+                            <!-- Tombol Check In -->
+                            <button name="action_check_in" type="object" string="Check In" class="oe_highlight" invisible="state=='check_in' or state=='check_out' or state=='canceled'"/>
+                            
+                            <!-- Tombol Check Out -->
+                            <button name="action_check_out" type="object" string="Check Out" class="oe_highlight" invisible="state=='check_out' or state=='canceled'"/>
+                            
+                            <!-- Tombol Dibatalkan -->
+                            <button name="action_cancel" type="object" string="Dibatalkan" class="btn-secondary" invisible="state=='canceled'"/>
+
+                            <!-- Status Bar -->
+                            <field name="state" widget="statusbar" statusbar_visible="reservasi,check_in,check_out,canceled"/>
+                        </header>
+                        <field name="nomor_reservasi" style="font-weight: bold; font-size: 20px;"/>
+                        <group string="Data Reservasi" class="o_group">
+                            <group>
+                                <field name="checkin" string="Check In" widget="time"/>
+                                <field name="tanggal_reservasi" widget="time"/>
+                            </group>
+                            <group>
+                                <field name="checkout" string="Check Out" widget="time"/> 
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Kamar Hotel">
+                            </page>
+                        </notebook>
+                        <group string="Data Pelanggan" class="o_group">
+                            <group>
+                                <field name="nama" placeholder="Masukkan Nama"/>
+                                <field name="alamat" readonly="1" placeholder="Alamat"/>
+                                <field name="phone" readonly="1" placeholder="Phone"/>
+                                <field name="email" readonly="1" placeholder="Email"/>        
+                            </group>
+                            <group>
+                                <field name="gender"/>                                                     
+                                <field name="umur"/>
+                                <field name="dokumen_id"/>
+                                <field name="nomor_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Note">
+                                <field name="note" placeholder="Notes..."/>  <!-- Display total cost here -->
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="footer-section" style="text-align: center; padding: 10px; border-top: 1px solid #e0e0e0;">
+                        <span>Hotel Management System © 2024</span>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for the Hotel menu -->
+        <record id="hotel_reservasi_menu_action" model="ir.actions.act_window">
+            <field name="name">Reservasi</field>
+            <field name="res_model">hotel.reservasi</field>
+            <field name="view_mode">list,form,kanban</field>
+        </record>
+    </data>
+</odoo>

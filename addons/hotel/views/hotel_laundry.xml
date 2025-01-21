@@ -1,0 +1,109 @@
+<odoo>
+    <data>
+        <!-- Search View for Hotel -->
+        <record id="hotel_laundry_view_search" model="ir.ui.view">
+            <field name="name">Hotel Laundry Search</field>
+            <field name="model">hotel.laundry</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="nomor_laundry"/>
+                </search>
+            </field>
+        </record>
+
+<!-- list View for Hotel -->
+<record id="hotel_laundry_view_list" model="ir.ui.view">
+    <field name="name">Hotel List</field>
+    <field name="model">hotel.laundry</field>
+    <field name="arch" type="xml">
+        <list string="Hotel List">
+            <field name="nomor_laundry"/>
+            <field name="nama_pelanggan"/>
+            <field name="tanggal_laundry"/>
+            <!-- Badge dengan warna kustom berdasarkan status -->
+            <field name="state" widget="badge" 
+                decoration-success="state == 'check_in'"
+                decoration-danger="state == 'canceled'"
+                decoration-info="state == 'laundry'"
+                decoration-warning="state == 'check_out'"/>
+        </list>
+    </field>
+</record>
+
+        <!-- Kanban View for Hotel -->
+        <record id="hotel_laundry_view_kanban" model="ir.ui.view">
+            <field name="name">Hotel Kanban</field>
+            <field name="model">hotel.laundry</field>
+            <field name="arch" type="xml">
+                <kanban string="Hotel Kanban">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_card">
+                                <strong><field name="nomor_laundry"/></strong>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <!-- Form View for Hotel -->
+        <record id="hotel_laundry_view_form" model="ir.ui.view">
+            <field name="name">laundry Form</field>
+            <field name="model">hotel.laundry</field>
+            <field name="arch" type="xml">
+                <form string="Hotel Form">
+                    <sheet>
+                        <header>
+                            <!-- Tombol Check In -->
+                            <button name="action_check_in" type="object" string="Taruh" class="oe_highlight" invisible="state=='check_in' or state=='check_out' or state=='canceled'"/>
+                            
+                            <!-- Tombol Check Out -->
+                            <button name="action_check_out" type="object" string="Ambil" class="oe_highlight" invisible="state=='check_out' or state=='canceled'"/>
+                            
+                            <!-- Tombol Dibatalkan -->
+                            <button name="action_cancel" type="object" string="Dibatalkan" class="btn-secondary" invisible="state=='canceled'"/>
+
+                            <!-- Status Bar -->
+                            <field name="state" widget="statusbar" statusbar_visible="laundry,taruh,ambil,canceled"/>
+                        </header>
+                        <field name="nomor_laundry" style="font-weight: bold; font-size: 20px;"/>
+                        <group string="Data laundry" class="o_group">
+                            <group>
+                                <field name="jam_taruh" string="Jam Taruh"/>
+                                <field name="tanggal_laundry"/>
+                            </group>
+                            <group>
+                                <field name="jam_ambil" string="Jam Ambil"/> 
+                                <field name="nama_pegawai" string="Nama Pegawai"/> 
+                            </group>
+                        </group>
+                        <group string="Data pelanggan" class="o_group">
+                            <group>
+                                <field name="nama_pelanggan" string="Nama Pelanggan"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Layanan Laundry">
+                                <field name="layanan_laundry_ids" widget="many2many_list"/>  <!-- Display total cost here -->
+                            </page>
+                            <page string="Note">
+                                <field name="note" placeholder="Notes..."/>  <!-- Display total cost here -->
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="footer-section" style="text-align: center; padding: 10px; border-top: 1px solid #e0e0e0;">
+                        <span>Hotel Management System © 2024</span>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <!-- Action for the Hotel menu -->
+        <record id="hotel_laundry_action" model="ir.actions.act_window">
+            <field name="name">laundry</field>
+            <field name="res_model">hotel.laundry</field>
+            <field name="view_mode">list,form,kanban</field>
+        </record>
+    </data>
+</odoo>
