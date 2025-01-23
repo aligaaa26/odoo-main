@@ -1,0 +1,20 @@
+    <odoo>
+        <!-- Action Siswa -->
+        <record model="ir.actions.act_window" id="action_sekolah">
+            <field name="name">Sekolah</field>
+            <field name="res_model">sekolah</field>
+            <field name="view_mode">list,kanban,form</field>
+        </record>
+        <!-- Action Jurusan -->
+        <record model="ir.actions.act_window" id="action_jurusan">
+            <field name="name">Jurusan</field>
+            <field name="res_model">jurusan</field>
+            <field name="view_mode">list,kanban,form</field>
+        </record>
+        <!-- Action Ekskul -->
+        <record model="ir.actions.act_window" id="action_ekskul">
+            <field name="name">Ekskul</field>
+            <field name="res_model">ekskul</field>
+            <field name="view_mode">list,kanban,form</field>
+        </record>
+    </odoo>

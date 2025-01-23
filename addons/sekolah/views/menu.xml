@@ -1,0 +1,6 @@
+    <odoo>
+        <menuitem id="sekolah_menu_root" name="Sekolah" sequence="0" />
+        <menuitem name="List Siswa" id="menu_sekolah_list" parent="sekolah_menu_root" action="action_sekolah"/>
+        <menuitem name="Jurusan Siswa" id="menu_sekolah_jurusan_list" parent="sekolah_menu_root" action="action_jurusan"/>
+        <menuitem name="Ekskul Siswa" id="menu_sekolah_ekskul_list" parent="sekolah_menu_root" action="action_ekskul"/>
+    </odoo>

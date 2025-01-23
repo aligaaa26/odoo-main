@@ -1,0 +1,127 @@
+<odoo>
+    <record model="ir.ui.view" id="view_sekolah_search">
+		<field name="name">sekolah.search</field>
+		<field name="model">sekolah</field>
+		<field name="arch" type="xml">
+			<search>
+				<field name="name" />
+				<field name="kelas" />
+				<field name="absen" />
+				<field name="nama_ayah" />
+				<field name="nis" />
+			</search>
+		</field>
+	</record>
+
+    <!-- List View -->
+    <record model="ir.ui.view" id="view_sekolah_list">
+		<field name="name">sekolah.list</field>
+		<field name="model">sekolah</field>
+		<field name="arch" type="xml">
+			<list>
+				<field name="name" />
+				<field name="kelas" />
+				<field name="absen" />
+				<field name="nama_ayah" />
+			</list>
+		</field>
+	</record>
+
+    <record model="ir.ui.view" id="view_sekolah_kanban">
+		<field name="name">sekolah.kanban</field>
+		<field name="model">sekolah</field>
+		<field name="arch" type="xml">
+			<kanban>
+                <t t-name="kanban-box">
+                    <div class="oe_kanban_global_click">
+                        <div class="oe_kanban_details">
+                            <div class="col-md-6 row g-0">
+                                <field name="foto" widget="image" class="img-fluid" 
+                                        style="max-width: 100px; max-height: 100px;"/>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex flex-column mt-2 pt-2">
+                                    <strong>
+                                        Nama: <field name="name"/>
+                                    </strong>
+                                    <div>NIS: <field name="nis"/></div>
+                                    <div>Kelamin: <field name="gender"/></div>
+                                    <div>Umur: <field name="umur"/></div>
+                                    <div>Nilai Rata-Rata: <field name="rata_rata"/></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+			</kanban>
+		</field>
+	</record>
+
+    <record model="ir.ui.view" id="view_sekolah_form">
+		<field name="name">sekolah.form</field>
+		<field name="model">sekolah</field>
+		<field name="arch" type="xml">
+			<form>
+                <header>
+                    <button name="action_batal" type="object" string="Batal" invisible="state=='batal'"/>
+                    <button name="action_valid" type="object" string="Valid" invisible="state=='valid'"/>
+                    <button name="send_email" type="object" string="Send Mail" class='btn-primary'/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,batal,valid" style="float: right;" />
+                </header>
+
+                <sheet>
+                    
+                    <group col="1" colspan="1" class="oe_center">
+                        <field name="foto" widget="image" class="oe_avatar" placeholder="Foto Siswa" nolabel="1"/>
+                    </group>
+                    
+                    <group>
+                        <group string="Group 1">
+                            <field name="name"/>
+                            <field name="nis"/>
+                            <field name="umur"/>
+                            <field name="gender"/>
+                        </group>
+                        <group string="Group 2">
+                            <field name="kelas"/>
+                            <field name="absen"/>
+                            <field name="ekskul_id" widget="many2many_tags" options="{'no_create': True}"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Deskripsi">
+                            <group>
+                                <field name="deskripsi"/>
+                            </group>
+                        </page>
+                        <page string="Informasi Keluarga">
+                            <group>
+                                <field name="alamat"/>
+                                <field name="nama_ayah"/>
+                                <field name="nama_ibu"/>
+                            </group>
+                        </page>
+                        <page string="Nilai">
+                            <group>
+                                <field name="ipa"/>
+                                <field name="ips"/>
+                                <field name="rata_rata"/>
+                            </group>
+                        </page>
+                        <page string="Wali">
+                            <group>
+                                <field name="parent_id"/>
+                                <field name="phone"/>
+                            </group>
+                        </page>
+                        <page string="Jurusan">
+                            <group>
+                                <field name="jurusan_id"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+			</form>
+		</field>
+	</record>
+</odoo>
